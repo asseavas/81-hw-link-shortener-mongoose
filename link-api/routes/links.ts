@@ -19,14 +19,22 @@ const linksRouter = express.Router();
 
 linksRouter.post('/links', async (req, res, next) => {
   try {
+    const existingLink = await Link.findOne({
+      originalUrl: req.body.originalUrl,
+    });
+
+    if (existingLink) {
+      return res.status(200).send(existingLink);
+    }
+
     let shortUrl: string | undefined;
     let isUnique = false;
 
     while (!isUnique) {
       const newShortUrl = randomStringId();
-      const existingLink = await Link.findOne({ shortUrl: newShortUrl });
+      const existingShortUrl = await Link.findOne({ shortUrl: newShortUrl });
 
-      if (!existingLink) {
+      if (!existingShortUrl) {
         shortUrl = newShortUrl;
         isUnique = true;
       }
@@ -46,7 +54,7 @@ linksRouter.post('/links', async (req, res, next) => {
     const link = new Link(LinkMutation);
     await link.save();
 
-    return res.send(link);
+    return res.status(201).send(link);
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       return res.status(400).send(error);

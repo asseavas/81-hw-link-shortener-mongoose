@@ -24,11 +24,11 @@ const LinkForm: React.FC<Props> = ({ onSubmit }) => {
         name="originalUrl"
         value={state.originalUrl}
         onChange={inputChangeHandler}
-        placeholder="Enter your URL"
         className="link-input"
+        placeholder="Enter your URL here"
         required
       />
-      <button type="submit" className="link-button">
+      <button type="submit" className="shorten-button">
         Shorten
       </button>
     </form>

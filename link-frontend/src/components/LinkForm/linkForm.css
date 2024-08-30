@@ -1,30 +1,36 @@
 .link-form {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 15px;
 }
 
 .link-input {
-  padding: 10px;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  flex-grow: 1;
+  padding-inline: 15px;
+  padding-block: 15px;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  transition: background-color 0.3s ease;
 }
 
-.link-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: none;
+.link-input:focus {
+  background-color: #e0e0e0;
+}
+
+.shorten-button {
+  padding: 15px 20px;
   background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
-.link-button:hover {
+.shorten-button:hover {
   background-color: #0056b3;
 }

@@ -6,7 +6,7 @@ import './links.css';
 const Links = () => {
   const [shortUrl, setShortUrl] = useState<string | null>(null);
 
-  const shortenLinkSubmit = async (data: { originalUrl: string }) => {
+  const createShortUrl = async (data: { originalUrl: string }) => {
     try {
       const response = await axiosApi.post('/links', data);
       setShortUrl(response.data.shortUrl);
@@ -16,16 +16,17 @@ const Links = () => {
   };
 
   return (
-    <div className="page">
-      <h1 className="header">Shorten your link</h1>
-      <LinkForm onSubmit={shortenLinkSubmit} />
+    <div className="links-container">
+      <h1 className="title">Shorten Your Link</h1>
+      <LinkForm onSubmit={createShortUrl} />
       {shortUrl && (
-        <div className="result">
-          <p>Your shortened link:</p>
+        <div className="short-url-container">
+          <p className="text">Your shortened link is:</p>
           <a
             href={`http://localhost:8000/${shortUrl}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="short-url-link"
           >
             {`http://localhost:8000/${shortUrl}`}
           </a>
